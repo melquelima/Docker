@@ -1,0 +1,38 @@
+cd /etc/systemd/system/
+
+
+sudo nano <container_name>.service
+
+
+======================= CONTENT
+
+[Unit]
+Description=Iniciar Portainer Community Edition automaticamente
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker start -a <container_name>
+ExecStop=/usr/bin/docker stop -t 2 <container_name>
+
+[Install]
+WantedBy=multi-user.target
+
+
+============================ END CONTENT
+
+
+sudo systemctl daemon-reload
+
+sudo systemctl status nome_do_servico.service
+
+sudo systemctl is-enabled nome_do_servico.service
+
+sudo systemctl enable nome_do_servico.service
+
+sudo systemctl is-enabled nome_do_servico.service
+
+sudo systemctl start portainer_ce.service
+
+sudo systemctl status nome_do_servico.service

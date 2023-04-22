@@ -1,0 +1,46 @@
+====INSTALATION====
+https://docs.docker.com/engine/install/ubuntu/
+
+
+=== DOCKER COPY/ADD ===
+COPY -> copia arquivos do source para o destination ou diretorio do seu host
+ADD  -> faz a mesma coisaque o COPY mas tambem suporta 2 outros sources
+
+1 - pode ser usado URL ao invez de um arquivo local/diretorio
+2 - pode extrair um .tar do source diretamente no destino
+	ADD http://example.com/big.tar.gz /usr/src/things/
+	RUN tar -xJf /usr/src/things/big.tar.xz -C /usr/src/things/
+nao e recomendado usar o ADD para baixar arquivos ao invez e recomendado que use o curl ou wget
+
+
+
+
+=== DOCKER POLICYS ===
+
+no             -> nao reinicia o container (default)
+on-failure     -> reinicia se tiver algum erro na execucao do container
+unless-stopped -> reinia o container a nao ser se foi explicitamente parado ou o docker parou o container ou reiniciado.
+always         -> sempre reinicia o container se parado
+
+
+docker container run -d --restart <policy> <container_name>
+==== COMMANDS ====
+systemctl status docker -> checks docker status 
+docker info		-> gets docker information system
+docker ps -a            -> mostra todos os containers pode ser usado o (--all)
+docker container run -d <container_name> <start_command> -> o start_comand sobre escreve o comando default da imagem
+docker container start <container_name> -> inicia um container
+docker container stop $(docker container ls -aq)    -> para TODOS os containers
+docker container rm     -> deleta um container ja criado o container precisa estar parado
+docker container exec -it <container_name> bash -> entra dentro do container
+docker container exec -it <container_name> <comando> -> roda o comando dentro do cotnainer e retorna para o terminal do host
+docker container --rm   -> deleta o container no momento que ele para
+docker logs <container_name> ->mostra os logs do container
+
+docker system df  -> mostra informacoes sobre o docker imagens e containers relacionados a utilizacao de disco e outros
+docker system df -v -> mostra detalhadamente
+
+
+systemctl restart docker -> reinicia o docker
+netstat -ntlp           -> mostra as portas em utilizacao no linux
+df -h                   -> mostra os discos no linux

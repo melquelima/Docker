@@ -1,0 +1,29 @@
+version: "3"
+services:
+  database:
+    image: postgres:13-alpine
+    container_name: postgres_cntr
+    networks:
+      network1:
+    environment:
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=qwerty333"
+      - "POSTGRES_DB=postgres"
+    ports:
+      - 5432:5432
+    volumes:
+      - ./volumes/data:/var/lib/postgresql/data
+      - ./volumes/postgres_custom/postgresql.conf:/etc/postgresql/postgresql.conf
+    entrypoint: docker-entrypoint.sh -c 'config_file=/etc/postgresql/postgresql.conf'
+# volumes:
+#   pg-data:
+#   pg-config:
+#     driver: local
+#     driver_opts:
+#       type: "none"
+#       o: "bind"
+#       device: "${PWD}/postgres_custom"
+networks:
+  network1:
+      external:
+        name: network1

@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  app:
+    build: .
+    container_name: flask_cntr
+    command: flask run --host 0.0.0.0
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    external_links:
+      - postgress_cntr
+    networks:
+      network1:
+
+networks:
+  network1:
+      external:
+        name: network1
