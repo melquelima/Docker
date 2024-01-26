@@ -1,0 +1,26 @@
+#---------------------STEPS------------
+# para iniciar um novo container do grafana com todos os backups
+# 1- certifique que a pasta /volumes/db esta vazia
+# 2- certifique que a pasta /volumes/ini esta vazia
+# 3- rode o compose com a linha 21 comentada (- ./volumes/ini...)
+# 4- rode o comando no terminal para copiar o arquivo ini ("docker cp grafana_cntr:./etc/grafana/grafana.ini ./volumes/ini")
+# 5- descomente a linha 21 e rode o compose novamente com --force-recreate
+
+version: "3"
+services:
+  database:
+    container_name: grafana_cntr
+    build: .
+    networks:
+      network1:
+    ports:
+      - 3000:3000
+    #volumes:
+      # tem que bindar so o arquivo do ini pois o grafana cria outra estrutura anterior, 
+      # se bindar toda a pasta ele sobreescreve a estrutura anterior criada pelo grafana
+    #  - ./volumes/ini/grafana.ini:/etc/grafana/grafana.ini
+    #  - ./volumes/db:/var/lib/grafana
+networks:
+  network1:
+      external:
+        name: network1

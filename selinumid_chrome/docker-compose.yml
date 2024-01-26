@@ -2,14 +2,17 @@ version: '3'
 services:
   selenoid:
     image: "aerokube/selenoid"
+    container_name: selenoid
     network_mode: bridge
+    command: -limit 20 -retry-count 1000 -timeout 3m0s
     ports:
       - "4444:4444"
     volumes:
-      - "$PWD:/etc/selenoid/" # assumed current dir contains browsers.json
+      - "/var/docker_volumes/selenoid:/etc/selenoid/" # assumed current dir contains browsers.json
       - "/var/run/docker.sock:/var/run/docker.sock"
   selenoid-ui:
     image: "aerokube/selenoid-ui"
+    container_name: selenoid_ui
     network_mode: bridge
     links:
       - selenoid

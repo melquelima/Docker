@@ -1,0 +1,8 @@
+services:
+  tasmocompiler:
+    image: benzino77/tasmocompiler
+    container_name: tasmocompiler
+    ports:
+     - "3000:3000"
+    environment:
+     - DEBUG=server,git,compile

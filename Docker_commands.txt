@@ -44,3 +44,10 @@ docker system df -v -> mostra detalhadamente
 systemctl restart docker -> reinicia o docker
 netstat -ntlp           -> mostra as portas em utilizacao no linux
 df -h                   -> mostra os discos no linux
+
+
+
+
+
+
+docker-compose up --build --force-recreate --no-deps -d
