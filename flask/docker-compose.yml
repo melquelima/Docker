@@ -14,8 +14,9 @@ services:
       - postgress_cntr
     networks:
       network1:
+    pull_policy: build
 
 networks:
   network1:
       external:
-        name: network1
+        name: connect

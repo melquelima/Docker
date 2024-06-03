@@ -15,7 +15,6 @@ db   = SQLAlchemy(app)
 
 @app.route('/')
 def home():
-    db.session.connection()
     return 'Connected'
 
 @app.route('/whatsaap',methods=['POST'])

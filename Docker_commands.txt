@@ -51,3 +51,11 @@ df -h                   -> mostra os discos no linux
 
 
 docker-compose up --build --force-recreate --no-deps -d
+
+
+
+
+
+
+######## CRIANDO IMAGEM DE UM CONTAINE EM EXECUCAO
+https://www.dataset.com/blog/create-docker-image/
